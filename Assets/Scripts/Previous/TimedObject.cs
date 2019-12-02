@@ -8,7 +8,7 @@ public class TimedObject : ObjectProperties
 
     private void Start()
     {
-        Invoke("Action", timeOfAction);
+        //Invoke("Action", timeOfAction);
     }
 
     public void Action()

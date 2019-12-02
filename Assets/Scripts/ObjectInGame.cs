@@ -8,6 +8,7 @@ public class ObjectInGame : MonoBehaviour
 
     Transform playerPosition;
 
+
     // Start is called before the first frame update
     void Start()
     {

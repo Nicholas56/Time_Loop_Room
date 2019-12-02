@@ -1,32 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ObjectProperties : MonoBehaviour
+[CreateAssetMenu]
+public class ObjectProperties : ScriptableObject
 {
     //A boolean to let the game know if the actions have been performed
-    bool hasDoneAction;
-    //An array of actions that the object will carry out when interacted with
-    public Action[] actions;
+    //bool hasDoneAction;
+    //An array of events that the object will call out when interacted with
+    public GameEvent[] events;
 
     //This is the list of properties that any object can possess
     public enum property {Space, Line, Form, Light, Color, Texture, Pattern };
+
     //An array of properties, so that any object can have any number of properties
     public property[] type; 
     
     //When Action() is called, every action assigned to object is performed
-    void Action()
+    public void Action()
     {
         //Checks that the actions haven't already been performed
-        if (!hasDoneAction)
+       // if (!hasDoneAction)
         {
             //Runs though each action and performs them in that order
-            foreach (Action action in actions)
+            foreach (GameEvent action in events)
             {
-                action.PerformAction();
+                action.Raise();
             }
             //Sets the boolean to true so that the object cannot perform any more actions
-            hasDoneAction = true;
+            //hasDoneAction = true;
         }
     }
 }
