@@ -19,6 +19,8 @@ public class MoveDown : MonoBehaviour
                 transform.position += new Vector3(0, -moveDistance, 0);
                 command = direction.Up;
                 break;
+
+
             case direction.Forward:
                 transform.position += new Vector3( moveDistance,0, 0);
                 command = direction.Backward;
