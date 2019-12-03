@@ -3,49 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AchievementCheck : MonoBehaviour
-{
-    GameObject[] objects;
-    List<GameObject> spaceObjects = new List<GameObject>();
-    List<GameObject> lineObjects = new List<GameObject>();
-    List<GameObject> formObjects = new List<GameObject>();
-    List<GameObject> lightObjects = new List<GameObject>();
-    List<GameObject> colorObjects = new List<GameObject>();
-    List<GameObject> textureObjects = new List<GameObject>();
-    List<GameObject> patternObjects = new List<GameObject>();
-
-
-
+{  
     // Start is called before the first frame update
-    /*void Start()
+    void Start()
     {
-        objects = GameObject.FindGameObjectsWithTag("Properties");
-
-        for(int i = 0; i < objects.Length; i++)
-        {
-            if(objects[i].GetComponent<ObjectInGame>() != null)
-            {
-                for(int j = 0; j < objects[i].GetComponent<ObjectInGame>().properties.type.Length; j++)
-                {
-                    switch(objects[i].GetComponent<ObjectInGame>().properties.type)
-                    {
-                        case objects[i].GetComponent<ObjectInGame>().properties.property.Color:
-                            break;
-
-                    }
-                }
-            }
-        }
-
         StartCoroutine("PropertyCheck");
-    }*/
-
+    }
 
     //Checks each object with certain properties to see if conditions are met
     IEnumerator PropertyCheck()
     {
-        //Checks objects with space property to see if they are still within the room
+        {//Checks objects with space property to see if they are still within the room and updates the Space value
+            int spaceNum = 0;
+            
+            for (int i = 0; i < GameManager.spaceObjects.Count; i++)
+            {
+                if (GameManager.spaceObjects[i].transform.position.y < 0)
+                {
+                    spaceNum++;
+                }
+            }
+            int differ = spaceNum - Properties.Space;
+            Properties.Increase("Space", differ);
+        }
 
+        {//Checks objects with line property
 
+        }
+
+        {//Checks objects with form property
+
+        }
+
+        {//Checks objects with light property
+
+        }
+
+        {//Checks objects with color property
+
+        }
+
+        {//Checks objects with texture property
+
+        }
+
+        {//Checks objects with pattern property
+
+        }
+
+        print("There are " + Properties.Space + " points in Space");
 
         yield return new WaitForSeconds(1f);
         StartCoroutine("PropertyCheck");

@@ -11,12 +11,61 @@ public class GameManager : MonoBehaviour
     //The time before the scene reloads
     public float resetTime = 300f;
 
+    GameObject[] objects;
+    public static List<GameObject> spaceObjects = new List<GameObject>();
+    public static List<GameObject> lineObjects = new List<GameObject>();
+    public static List<GameObject> formObjects = new List<GameObject>();
+    public static List<GameObject> lightObjects = new List<GameObject>();
+    public static List<GameObject> colorObjects = new List<GameObject>();
+    public static List<GameObject> textureObjects = new List<GameObject>();
+    public static List<GameObject> patternObjects = new List<GameObject>();
+
 
     // Start is called before the first frame update
     void Start()
     {
         //The reset will occur after the time input has passed
         Invoke("ResetTime", resetTime);
+
+        objects = GameObject.FindGameObjectsWithTag("Properties");
+
+        //This will go through every object in the game with the tag properties and sort it into lists depending it's property type
+        //Some objects will have more than one property type and therefore will appear in multiple lists.
+        for (int i = 0; i < objects.Length; i++)
+        {
+            if (objects[i].GetComponent<ObjectInGame>())
+            {
+                for (int j = 0; j < objects[i].GetComponent<ObjectInGame>().properties.type.Length; j++)
+                {
+                    switch (objects[i].GetComponent<ObjectInGame>().properties.type[j])
+                    {
+                        case ObjectProperties.property.Color:
+                            colorObjects.Add(objects[i]);
+                            break;
+                        case ObjectProperties.property.Form:
+                            formObjects.Add(objects[i]);
+                            break;
+                        case ObjectProperties.property.Light:
+                            lightObjects.Add(objects[i]);
+                            break;
+                        case ObjectProperties.property.Line:
+                            lineObjects.Add(objects[i]);
+                            break;
+                        case ObjectProperties.property.Pattern:
+                            patternObjects.Add(objects[i]);
+                            break;
+                        case ObjectProperties.property.Space:
+                            spaceObjects.Add(objects[i]);
+                            break;
+                        case ObjectProperties.property.Texture:
+                            textureObjects.Add(objects[i]);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
     }
 
     private void Update()
