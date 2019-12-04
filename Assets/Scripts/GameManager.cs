@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     //The time before the scene reloads
     public float resetTime = 300f;
 
-    GameObject[] objects;
+    GameObject[] objects;   //Array containing every object in the game
     public static List<GameObject> spaceObjects = new List<GameObject>();
     public static List<GameObject> lineObjects = new List<GameObject>();
     public static List<GameObject> formObjects = new List<GameObject>();
