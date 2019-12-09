@@ -7,10 +7,9 @@ public class PlayerMovement : MonoBehaviour
 
     CharacterController charController;
     /*
-    [SerializeField] float jumpSpeed = 20.0f;
+    [SerializeField] float jumpSpeed = 20.0f;*/
     [SerializeField] float gravity = 1.0f;
     float yVelocity = 0.0f;
-    */
     [SerializeField] float moveSpeed = 5.0f;
 
     public float h;
@@ -38,11 +37,11 @@ public class PlayerMovement : MonoBehaviour
                 yVelocity = jumpSpeed;
             }
         }
-        else
+        else*/
         {
             yVelocity -= gravity;
         }
-        velocity.y = yVelocity;*/
+        velocity.y = yVelocity;
 
         velocity = transform.TransformDirection(velocity);
 

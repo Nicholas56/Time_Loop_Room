@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static float gameTimer = 0f;
 
     //The time before the scene reloads
-    public float resetTime = 300f;
+    public float resetTime = 90f;
 
     GameObject[] objects;   //Array containing every object in the game
     public static List<GameObject> spaceObjects = new List<GameObject>();
@@ -27,7 +27,19 @@ public class GameManager : MonoBehaviour
         //The reset will occur after the time input has passed
         Invoke("ResetTime", resetTime);
 
+        //Calls the make room function from the Room maker script on the game manager
+        GetComponent<RoomMaker>().MakeRoom();
+
         objects = GameObject.FindGameObjectsWithTag("Properties");
+
+        foreach(GameObject iObject in objects)
+        {
+            if (iObject.GetComponent<ObjectInGame>() == null)
+            {
+                iObject.AddComponent<ObjectInGame>();
+
+            }
+        }
 
         //This will go through every object in the game with the tag properties and sort it into lists depending it's property type
         //Some objects will have more than one property type and therefore will appear in multiple lists.
