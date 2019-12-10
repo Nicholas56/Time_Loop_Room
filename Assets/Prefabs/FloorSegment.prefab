@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5386799216976973445}
   - component: {fileID: 7602771737234573986}
   - component: {fileID: 7363601702835259673}
+  - component: {fileID: 3976276041922458101}
+  - component: {fileID: 3685933269812963767}
   m_Layer: 0
   m_Name: FloorSegment
   m_TagString: Segment
@@ -111,3 +113,31 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bda16a5692a387d4f9eb4572de397265, type: 2}
   - {fileID: 2100000, guid: 45640a7492fb6e74186f13990eaf7cba, type: 2}
   - {fileID: 2100000, guid: f0b29d482e2538d4c9205ecc54e86dab, type: 2}
+--- !u!114 &3976276041922458101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598903712511201089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d806a5a1e00824e800c66326ef8eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  properties: {fileID: 0}
+--- !u!114 &3685933269812963767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598903712511201089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ad5f1db1d298f84fb4ef90d4d3b75b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  givenProperty: {fileID: 0}
+  segmentObject: {fileID: 2743168548821084672, guid: 66f4a6c60b0bf3647afeb30744132185,
+    type: 3}

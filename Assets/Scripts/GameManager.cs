@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
         //Calls the make room function from the Room maker script on the game manager
         GetComponent<RoomMaker>().MakeRoom();
 
+        //Finds the options script and turns it on
+        OptionsScript options = FindObjectOfType<OptionsScript>();
+        options.enabled = true;
+
         objects = GameObject.FindGameObjectsWithTag("Properties");
 
         foreach(GameObject iObject in objects)
@@ -88,6 +92,7 @@ public class GameManager : MonoBehaviour
 
     void ResetTime()
     {
+        gameTimer = 0;
         //The scene will be reloaded to reset
         SceneManager.LoadScene(0);
     }

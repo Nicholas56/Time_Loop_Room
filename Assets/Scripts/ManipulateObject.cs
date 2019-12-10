@@ -14,6 +14,7 @@ public class ManipulateObject : MonoBehaviour
     //This function is called through events
     public void Reposition()
     {
+        Debug.Log("Manipulation has occurred");
         switch (command)
         {
             //These two cases move the object up and down

@@ -6,6 +6,7 @@ public class FloorSegmentBehaviour : MonoBehaviour
 {
     public float timeForFall;
     bool willFall;
+    //The ID lets the game know the order of segment creation and the quadrant the segment is located in
     public int floorID;
 
     [SerializeField]
@@ -16,7 +17,7 @@ public class FloorSegmentBehaviour : MonoBehaviour
     {
         willFall = true;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
