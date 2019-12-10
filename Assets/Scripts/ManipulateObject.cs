@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ManipulateObject : MonoBehaviour
 {
@@ -10,6 +11,31 @@ public class ManipulateObject : MonoBehaviour
     public bool reverseAfterAction; //This boolean allows the action to reverse to previous state
     public enum direction { Up, Down, Left, Right, Grow, Shrink, Open, Close, Light, Dark}
     public direction command;
+
+    UnityEvent callEvent;
+
+    private void Start()
+    {
+        Invoke("AddListener", 0.1f);
+    }
+
+    void AddListener()
+    {
+        //Checks if game data already has the assigned event, otherwise it chooses one
+        if (GameData.listeners.ContainsKey(transform.position))
+        {
+            callEvent = GameData.listeners[transform.position];
+        }
+        else
+        {
+            int randNum = Random.Range(0, GameData.actions.Count);
+            callEvent = GameData.actions[randNum];
+            GameData.listeners.Add(transform.position, callEvent);
+        }
+
+        //Now to add the listener
+        callEvent.AddListener(Reposition);
+    }
 
     //This function is called through events
     public void Reposition()

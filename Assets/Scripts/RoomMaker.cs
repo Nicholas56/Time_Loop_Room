@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoomMaker : MonoBehaviour
 {
     GameData data;
     public ObjectProperties[] emptyProperties;
     List<ObjectData> segmentIdentifiers;
+    List<UnityEvent> actions;
 
     public GameObject floorSegment;
     public GameObject player;
@@ -26,6 +28,18 @@ public class RoomMaker : MonoBehaviour
                 segmentIdentifiers = new List<ObjectData>();            
         }
         else { segmentIdentifiers = data.segmentIdentifiers; }
+
+        //The room maker has to check if list of events already exists, if not it will create its own
+        if (GameData.actions == null)
+        {
+            actions = new List<UnityEvent>();
+            for(int i = 0; i< roomSize * roomSize; i++)
+            {
+                UnityEvent loopEvent = new UnityEvent();
+                actions.Add(loopEvent);
+            }
+        }
+        else { actions = GameData.actions; }
     }
 
 
@@ -44,14 +58,19 @@ public class RoomMaker : MonoBehaviour
                     segment.transform.SetParent(transform);
 
                     segment.GetComponent<FloorSegmentBehaviour>().floorID = x + y;
+                    //Give the segment a random properties component
                     int randNum = Random.Range(0, emptyProperties.Length);
                     segment.GetComponent<ObjectMaker>().givenProperty = emptyProperties[randNum];
+                    //Give the properties an event from the action list
+                    int randNum2 = Random.Range(0, actions.Count);
+                    segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
 
                     //The struct is given the pertinent data to be stored in the list
                     ObjectData objectData = new ObjectData();
                     objectData.pos = new Vector3((x * 5), 0, (y * 5));
                     objectData.properties = emptyProperties[randNum];
                     objectData.ID = x + y;
+                    objectData.action = actions[randNum2];
 
                     segmentIdentifiers.Add(objectData);
                 }
@@ -67,12 +86,15 @@ public class RoomMaker : MonoBehaviour
                     segment.GetComponent<FloorSegmentBehaviour>().floorID = x + y;
                     int randNum = Random.Range(0, emptyProperties.Length);
                     segment.GetComponent<ObjectMaker>().givenProperty = emptyProperties[randNum];
+                    int randNum2 = Random.Range(0, actions.Count);
+                    segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
 
                     //The struct is given the pertinent data to be stored in the list
                     ObjectData objectData = new ObjectData();
                     objectData.pos = new Vector3((x * -5), 0, (y * 5));
                     objectData.properties = emptyProperties[randNum];
                     objectData.ID = x + y;
+                    objectData.action = actions[randNum2];
 
                     segmentIdentifiers.Add(objectData);
                 }
@@ -88,12 +110,15 @@ public class RoomMaker : MonoBehaviour
                     segment.GetComponent<FloorSegmentBehaviour>().floorID = x + y;
                     int randNum = Random.Range(0, emptyProperties.Length);
                     segment.GetComponent<ObjectMaker>().givenProperty = emptyProperties[randNum];
+                    int randNum2 = Random.Range(0, actions.Count);
+                    segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
 
                     //The struct is given the pertinent data to be stored in the list
                     ObjectData objectData = new ObjectData();
                     objectData.pos = new Vector3((x * 5), 0, (y * -5));
                     objectData.properties = emptyProperties[randNum];
                     objectData.ID = x + y;
+                    objectData.action = actions[randNum2];
 
                     segmentIdentifiers.Add(objectData);
                 }
@@ -109,18 +134,22 @@ public class RoomMaker : MonoBehaviour
                     segment.GetComponent<FloorSegmentBehaviour>().floorID = x + y;
                     int randNum = Random.Range(0, emptyProperties.Length);
                     segment.GetComponent<ObjectMaker>().givenProperty = emptyProperties[randNum];
+                    int randNum2 = Random.Range(0, actions.Count);
+                    segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
 
                     //The struct is given the pertinent data to be stored in the list
                     ObjectData objectData = new ObjectData();
                     objectData.pos = new Vector3((x * -5), 0, (y * -5));
                     objectData.properties = emptyProperties[randNum];
                     objectData.ID = x + y;
+                    objectData.action = actions[randNum2];
 
                     segmentIdentifiers.Add(objectData);
                 }
             }
             //Stores all the data in Game Data
             data.segmentIdentifiers = segmentIdentifiers;
+            GameData.actions = actions;
 
             GameObject[] segments = GameObject.FindGameObjectsWithTag("Segment");
 
@@ -138,6 +167,7 @@ public class RoomMaker : MonoBehaviour
                 segment.transform.SetParent(transform);
                 segment.GetComponent<FloorSegmentBehaviour>().floorID = data.ID;
                 segment.GetComponent<ObjectMaker>().givenProperty = data.properties;
+                segment.GetComponent<ObjectMaker>().givenProperty.events.Add(data.action);
                 segment.GetComponent<FloorSegmentBehaviour>().timeForFall = GetComponent<GameManager>().resetTime - (data.ID * 14);
             }
         }
@@ -153,4 +183,5 @@ public class RoomMaker : MonoBehaviour
     public ObjectProperties properties;
     public int ID;
     public float fallTime;
+    public UnityEvent action;
 }

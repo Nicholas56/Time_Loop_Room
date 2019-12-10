@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 [CreateAssetMenu]
 public class ObjectProperties : ScriptableObject
 {
     //A boolean to let the game know if the actions have been performed
     //bool hasDoneAction;
     //An array of events that the object will call out when interacted with
-    public GameEvent[] events;
+    public List<UnityEvent> events = new List<UnityEvent>();
 
     //This is the list of properties that any object can possess
     public enum property {Space, Line, Form, Light, Color, Texture, Pattern };
@@ -22,9 +24,9 @@ public class ObjectProperties : ScriptableObject
        // if (!hasDoneAction)
         {
             //Runs though each action and performs them in that order
-            foreach (GameEvent action in events)
+            foreach (UnityEvent action in events)
             {
-                action.Raise();
+                action.Invoke();
             }
             //Sets the boolean to true so that the object cannot perform any more actions
             //hasDoneAction = true;
