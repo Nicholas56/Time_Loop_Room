@@ -73,10 +73,10 @@ public class RoomMaker : MonoBehaviour
                     segment.GetComponent<FloorSegmentBehaviour>().floorID = x + y;
                     //Give the segment a random properties component
                     int randNum = Random.Range(0, emptyProperties.Length);
-                    //segment.GetComponent<ObjectMaker>().givenProperty = new ObjectProperties(emptyProperties[randNum].events, emptyProperties[randNum].type);
+                    segment.GetComponent<ObjectMaker>().givenProperty = new ObjectProperties(emptyProperties[randNum].events, emptyProperties[randNum].type);
                     //Give the properties an event from the action list
                     int randNum2 = Random.Range(0, actions.Count);
-                    //segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
+                    segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
 
                     //The struct is given the pertinent data to be stored in the list
                     ObjectData objectData = new ObjectData();
@@ -98,9 +98,9 @@ public class RoomMaker : MonoBehaviour
 
                     segment.GetComponent<FloorSegmentBehaviour>().floorID = x + y;
                     int randNum = Random.Range(0, emptyProperties.Length);
-                    //segment.GetComponent<ObjectMaker>().givenProperty = new ObjectProperties(emptyProperties[randNum].events, emptyProperties[randNum].type);
+                    segment.GetComponent<ObjectMaker>().givenProperty = new ObjectProperties(emptyProperties[randNum].events, emptyProperties[randNum].type);
                     int randNum2 = Random.Range(0, actions.Count);
-                   // segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
+                    segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
 
                     //The struct is given the pertinent data to be stored in the list
                     ObjectData objectData = new ObjectData();
@@ -122,9 +122,9 @@ public class RoomMaker : MonoBehaviour
 
                     segment.GetComponent<FloorSegmentBehaviour>().floorID = x + y;
                     int randNum = Random.Range(0, emptyProperties.Length);
-                    //segment.GetComponent<ObjectMaker>().givenProperty = new ObjectProperties(emptyProperties[randNum].events, emptyProperties[randNum].type);
+                    segment.GetComponent<ObjectMaker>().givenProperty = new ObjectProperties(emptyProperties[randNum].events, emptyProperties[randNum].type);
                     int randNum2 = Random.Range(0, actions.Count);
-                   // segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
+                    segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
 
                     //The struct is given the pertinent data to be stored in the list
                     ObjectData objectData = new ObjectData();
@@ -146,9 +146,9 @@ public class RoomMaker : MonoBehaviour
 
                     segment.GetComponent<FloorSegmentBehaviour>().floorID = x + y;
                     int randNum = Random.Range(0, emptyProperties.Length);
-                    //segment.GetComponent<ObjectMaker>().givenProperty = new ObjectProperties(emptyProperties[randNum].events, emptyProperties[randNum].type);
+                    segment.GetComponent<ObjectMaker>().givenProperty = new ObjectProperties(emptyProperties[randNum].events, emptyProperties[randNum].type);
                     int randNum2 = Random.Range(0, actions.Count);
-                    //segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
+                    segment.GetComponent<ObjectMaker>().givenProperty.events.Add(actions[randNum2]);
 
                     //The struct is given the pertinent data to be stored in the list
                     ObjectData objectData = new ObjectData();

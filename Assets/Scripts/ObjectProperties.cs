@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ObjectProperties : MonoBehaviour
+public class ObjectProperties
 {
     //A boolean to let the game know if the actions have been performed
     //bool hasDoneAction;
